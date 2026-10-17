@@ -28,3 +28,11 @@ test('public manifest rejects account/backend fields, environment variables and 
 test('all other Projects state stays blocked even when it has harmless-looking content', () => {
   assert.equal(check(valid, '.projects/state.local.json').status, 1);
 });
+const identity = { version: 1, project: { merchantId: 'acct_' + 'A'.repeat(16), projectId: 'project_example', projectName: 'example-project' } };
+test('minimal project identification is allowed under its separate approved schema', () => {
+  assert.equal(check(identity, '.projects/state.local.json').status, 0);
+  assert.equal(check(identity, '.projects/state.local.json', true).status, 0);
+});
+test('project identification rejects email, provider account links and backend resource details', () => {
+  for (const value of [{ ...identity, providers: {} }, { ...identity, resources: {} }, { ...identity, project: { ...identity.project, email: 'private@example.com' } }]) assert.equal(check(value, '.projects/state.local.json').status, 1);
+});

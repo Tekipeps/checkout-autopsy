@@ -20,14 +20,26 @@ function publicManifestOnly(contents) {
     return resources.every(([key, r]) => name(key) && keys(r, ['name', 'providerName', 'serviceId']) && r.name === key && name(r.serviceId) && known.has(r.providerName));
   } catch { return false; }
 }
+function publicIdentificationOnly(contents) {
+  try {
+    const value = JSON.parse(contents);
+    const exact = (x, fields) => x && typeof x === 'object' && !Array.isArray(x) && Object.keys(x).length === fields.length && fields.every(k => Object.hasOwn(x, k));
+    return exact(value, ['version', 'project']) && value.version === 1 && exact(value.project, ['merchantId', 'projectId', 'projectName'])
+      && /^acct_[A-Za-z0-9]{16}$/.test(value.project.merchantId)
+      && /^project_[A-Za-z0-9]{1,100}$/.test(value.project.projectId)
+      && typeof value.project.projectName === 'string' && /^[A-Za-z0-9 _./:-]{1,100}$/.test(value.project.projectName);
+  } catch { return false; }
+}
 for (const file of files) {
   const publicManifest = file === '.projects/state.json';
-  if ((/(^|\/)\.env(?:\.|$)/.test(file) && !file.endsWith('.env.example')) || (file.startsWith('.projects/') && !publicManifest)) {
+  const publicIdentification = file === '.projects/state.local.json';
+  const publicMetadata = publicManifest || publicIdentification;
+  if ((/(^|\/)\.env(?:\.|$)/.test(file) && !file.endsWith('.env.example')) || (file.startsWith('.projects/') && !publicMetadata)) {
     blocked.push(file); continue;
   }
   // The public manifest is staged separately; never read CLI-managed local state.
-  const contents = (all && !publicManifest ? lstatSync(file).isSymbolicLink() ? readlinkSync(file) : readFileSync(file) : execFileSync('git', ['show', `:${file}`], { maxBuffer: 20 * 1024 * 1024 })).toString('utf8');
-  if (credential.test(contents) || (publicManifest && !publicManifestOnly(contents))) blocked.push(file);
+  const contents = (all && !publicMetadata ? lstatSync(file).isSymbolicLink() ? readlinkSync(file) : readFileSync(file) : execFileSync('git', ['show', `:${file}`], { maxBuffer: 20 * 1024 * 1024 })).toString('utf8');
+  if (credential.test(contents) || (publicManifest && !publicManifestOnly(contents)) || (publicIdentification && !publicIdentificationOnly(contents))) blocked.push(file);
 }
 if (blocked.length) {
   console.error('Commit blocked: credential-like content or local secret files found in:');
