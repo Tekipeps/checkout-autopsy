@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "providers": {
+    "createos": {
+      "name": "createos"
+    },
+    "herenow": {
+      "name": "herenow"
+    },
+    "netlify": {
+      "name": "Netlify"
+    },
+    "openrouter": {
+      "name": "OpenRouter"
+    }
+  },
+  "resources": {
+    "createos-project": {
+      "name": "createos-project",
+      "providerName": "createos",
+      "serviceId": "project"
+    },
+    "public-demo": {
+      "name": "public-demo",
+      "providerName": "Netlify",
+      "serviceId": "project"
+    },
+    "openrouter-api": {
+      "name": "openrouter-api",
+      "providerName": "OpenRouter",
+      "serviceId": "api"
+    },
+    "createos-plan": {
+      "name": "createos-plan",
+      "providerName": "createos",
+      "serviceId": "free"
+    },
+    "openrouter-plan": {
+      "name": "openrouter-plan",
+      "providerName": "OpenRouter",
+      "serviceId": "free"
+    }
+  }
+}

@@ -10,7 +10,7 @@
 
 The hosted application is an interactive explorer of completed real runs. New AI executions run from the local app or CLI with the operator's own provider credentials. The public demo has no code execution endpoint or provider secrets.
 
-**Intended public repository:** https://github.com/Tekipeps/checkout-autopsy (confirm publication before submitting).
+**Public repository:** https://github.com/Tekipeps/checkout-autopsy
 
 **Stack share link:** https://projects.dev/s#v1:createos~project,OpenRouter~api,Netlify~project
 
@@ -49,3 +49,7 @@ The form link in the organizer's 12-hour email currently resolves to the Google 
 Built Checkout Autopsy for the @createosai × Stripe Projects hackathon: an AI agent that reproduces payment-handler failures in disposable VMs, repairs them, then faces fresh tests after its patch freezes. Real Node + Stripe SDK + PostgreSQL; 69/69 audit checks across three authored fault mutations. Evidence + source: https://gleeful-baklava-f89941.netlify.app
 
 For LinkedIn replace @createosai with the platform's actual CreateOS mention. Attach the demo or a screenshot. Posting is not complete until its public URL is available.
+
+## Public stack manifest
+
+The leaderboard requires `.projects/state.json`. The user approved publishing only a minimal schema containing provider names and resource/service names. It is staged from reviewed public metadata; CLI-managed state on this workstation is left untouched and marked skip-worktree. The pre-commit hook rejects extra fields or any other `.projects/` file. Local/account state, credentials, environment values and vaults are not published.
