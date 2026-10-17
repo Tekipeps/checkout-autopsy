@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build:showcase"
+  publish = "dist-showcase"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+[[headers]]
+  for = "/evidence/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+    X-Content-Type-Options = "nosniff"

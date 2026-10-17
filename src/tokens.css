@@ -1,0 +1,25 @@
+:root {
+  color-scheme: dark;
+  --bg: #0c0f13;
+  --surface: #11151a;
+  --sidebar: #101418;
+  --surface-raised: #1a1f26;
+  --hover: #242b34;
+  --border: #252b33;
+  --border-strong: #343d47;
+  --text: #edf0f2;
+  --muted-bright: #b7c0ca;
+  --muted: #8b96a3;
+  --lime: #c7f65d;
+  --lime-bright: #d5ff7c;
+  --lime-soft: #b5d88c;
+  --lime-muted: #adca79;
+  --lime-dim: #c7f65d0b;
+  --lime-border: #c7f65d30;
+  --ink: #18200d;
+  --red: #ff977d;
+  --red-dim: #ff977d09;
+  --red-border: #ff977d32;
+  --amber: #efc27b;
+  --mono: 'JetBrains Mono Variable', monospace;
+}

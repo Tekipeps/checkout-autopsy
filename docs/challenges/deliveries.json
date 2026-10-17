@@ -1,0 +1,86 @@
+[
+  {
+    "id": "evt_challenge_pending",
+    "type": "checkout.session.completed",
+    "data": {
+      "object": {
+        "id": "cs_shop_north_004217",
+        "payment_status": "unpaid",
+        "amount_total": 1599,
+        "currency": "gbp"
+      }
+    }
+  },
+  {
+    "id": "evt_challenge_south",
+    "type": "checkout.session.completed",
+    "data": {
+      "object": {
+        "id": "cs_shop_south_004217",
+        "payment_status": "paid",
+        "amount_total": 4200,
+        "currency": "eur"
+      }
+    }
+  },
+  {
+    "id": "evt_challenge_settled",
+    "type": "checkout.session.async_payment_succeeded",
+    "data": {
+      "object": {
+        "id": "cs_shop_north_004217",
+        "payment_status": "paid",
+        "amount_total": 1599,
+        "currency": "gbp"
+      }
+    }
+  },
+  {
+    "id": "evt_challenge_completed",
+    "type": "checkout.session.completed",
+    "data": {
+      "object": {
+        "id": "cs_shop_north_004217",
+        "payment_status": "paid",
+        "amount_total": 1599,
+        "currency": "gbp"
+      }
+    }
+  },
+  {
+    "id": "evt_challenge_customer",
+    "type": "customer.created",
+    "data": {
+      "object": {
+        "id": "cs_unrelated_challenge",
+        "payment_status": "paid",
+        "amount_total": 8900,
+        "currency": "usd"
+      }
+    }
+  },
+  {
+    "id": "evt_challenge_south",
+    "type": "checkout.session.completed",
+    "data": {
+      "object": {
+        "id": "cs_shop_south_004217",
+        "payment_status": "paid",
+        "amount_total": 4200,
+        "currency": "eur"
+      }
+    }
+  },
+  {
+    "id": "evt_challenge_settled",
+    "type": "checkout.session.async_payment_succeeded",
+    "data": {
+      "object": {
+        "id": "cs_shop_north_004217",
+        "payment_status": "paid",
+        "amount_total": 1599,
+        "currency": "gbp"
+      }
+    }
+  }
+]

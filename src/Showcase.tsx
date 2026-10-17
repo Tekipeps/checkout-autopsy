@@ -1,0 +1,32 @@
+import { useEffect, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import { Activity, ArrowUpRight, Download, FlaskConical, ShieldCheck } from 'lucide-react';
+import { ProductionValidation } from './ProductionValidation';
+import type { RunResult } from '../shared/types';
+import '@fontsource-variable/ibm-plex-sans';
+import '@fontsource-variable/jetbrains-mono';
+import './styles.css';
+import './showcase.css';
+const repo = 'https://github.com/Tekipeps/checkout-autopsy';
+function Showcase() {
+  const [python, setPython] = useState<RunResult | null>(null);
+  const [tab, setTab] = useState<'node' | 'python'>('node');
+  const [after, setAfter] = useState(true);
+  const [error, setError] = useState('');
+  useEffect(() => { fetch('/evidence/python-challenge-full.json').then(r => { if (!r.ok) throw new Error('Could not load Python evidence.'); return r.json(); }).then(setPython).catch(e => setError(e.message)); }, []);
+  return <div className="app-shell showcase-shell">
+    <a href="#main" className="skip-link">Skip to evidence</a>
+    <header className="topbar"><a className="brand" href="/"><span className="brand-mark"><Activity size={23}/></span><span>checkout<span className="brand-slash">/</span><strong>autopsy</strong><span className="beta">LAB</span></span></a><span className="topbar-rule"/><span className="topbar-caption">Evidence before confidence.</span><a className="secondary small" href={repo} target="_blank" rel="noreferrer">Source & run locally <ArrowUpRight size={15}/></a></header>
+    <main id="main" className="main-content showcase-main">
+      <section className="masthead"><div className="masthead-copy"><div className="eyebrow">CREATEOS × STRIPE PROJECTS · HACKATHON 2026</div><h1>A successful response.<br/><span>A broken checkout.</span></h1><p>An AI agent reproduces silent payment failures, writes a repair inside a disposable CreateOS VM, then faces fresh tests after its patch freezes.</p><div className="context-tags"><span>Real sandbox execution</span><span>Real model repairs</span><span>No real charges</span></div></div><div className="showcase-proof"><ShieldCheck size={27}/><strong>69 / 69</strong><span>fresh Node/PostgreSQL audit checks passed</span><small>Three authored fault mutations · one integration</small></div></section>
+      <section className="showcase-notice"><FlaskConical size={20}/><div><strong>Recorded evidence explorer</strong><p>These are completed runs, with exact edits, hashes, inputs and raw observations available below. New AI runs are available in the local app and CLI; this public site does not execute uploaded code.</p></div></section>
+      <div className="showcase-steps"><div><b>01 / REPRODUCE</b><p>Observe durable orders and fulfillment, beyond HTTP 200.</p></div><div><b>02 / REPAIR</b><p>The model edits from failures. Generated code executes only in CreateOS.</p></div><div><b>03 / FREEZE & AUDIT</b><p>Hash the patch. Generate fresh inputs. Never feed audit failures back.</p></div></div>
+      <nav className="workspace-tabs" aria-label="Recorded evidence profiles"><button className={tab === 'node' ? 'active' : ''} onClick={() => setTab('node')}>Node + PostgreSQL</button><button className={tab === 'python' ? 'active' : ''} onClick={() => setTab('python')}>Imported Python handler</button></nav>
+      <div hidden={tab !== 'node'}><ProductionValidation config={{sandboxConfigured:false,modelConfigured:false,model:null}} evidenceUrl="/evidence/node-postgres-full.json" readOnly/></div>
+      {tab === 'python' && <section className="production-validation"><div className="tab-intro"><span className="incident-tag">PYTHON / SQLITE / IMPORTED HANDLER</span><h2>Two sessions. One truncated identifier.</h2><p>A separately authored handler collapsed distinct session IDs and hardcoded USD. Seven supplied deliveries challenge two same-suffix sessions in GBP and EUR. This is a synthetic import demonstration.</p></div>{error && <p role="alert">{error}</p>}{python && <><p className="production-verdict passed">Recorded repair and fresh audit passed. Sandbox destruction confirmed.</p><div className="production-metrics"><div><span>ORIGINAL</span><strong>{python.baseline.passed}/{python.baseline.total}</strong><small>Failure reproduced</small></div><div><span>AI REPAIR</span><strong>{python.repaired.passed}/{python.repaired.total}</strong><small>{python.attempts.length} model candidate</small></div><div><span>FROZEN AUDIT</span><strong>{python.audit?.candidate.passed}/{python.audit?.candidate.total}</strong><small>Fresh inputs; no feedback</small></div><div><span>CLEANUP</span><strong>{python.cleanup ? 'Destroyed' : 'Unconfirmed'}</strong><small>CreateOS micro-VM</small></div></div><p className="production-provenance">Model: {python.model} · Recorded {new Date(python.finishedAt).toLocaleString()}</p><p className="production-hash">Frozen SHA-256: {python.attempts.at(-1)?.hash}</p><div className="production-actions"><button className="secondary" onClick={() => setAfter(!after)}>{after ? 'Inspect original handler' : 'Inspect AI repair'}</button><a className="secondary" href="/evidence/python-challenge-full.json" download><Download size={15}/>Download full evidence</a></div><pre className="code-view showcase-source">{after ? python.patch : python.original}</pre><p>A prior development run failed concurrency and withheld verification. Runtime context was improved before this rerun; this is not a held-out benchmark. Both outcomes and the input challenge are documented in the repository.</p></>}</section>}
+      <section className="showcase-reproduce"><h2>Run your own autopsy.</h2><p>The complete agent, sandbox harness, supported import contracts, and verification logic are in the repository. Stripe Projects provisions CreateOS and OpenRouter; new runs use your own free-tier quota.</p><pre>npm ci<br/>npm run dev<br/><br/># Expanded Node / PostgreSQL profile<br/>npm ci --prefix sandbox/production --ignore-scripts<br/>npm run validate:production</pre><a className="secondary" href={`${repo}#readme`} target="_blank" rel="noreferrer">Setup, contracts & limitations <ArrowUpRight size={15}/></a></section>
+      <footer className="showcase-footer">Built from an empty directory for CreateOS × Stripe Projects. Evidence covers the stated fixtures and module contract; independent customer repositories and live Stripe-delivered traffic remain untested.</footer>
+    </main>
+  </div>;
+}
+createRoot(document.getElementById('root')!).render(<Showcase/>);
