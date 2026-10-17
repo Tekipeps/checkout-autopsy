@@ -1,5 +1,9 @@
 # Checkout Autopsy — submission packet
 
+**Leaderboard status:** submitted and confirmed under CreateOS 2026. [Public entry](https://projects.dev/vote/createos-hackathon). Listed as `createos-hackathon`, the Stripe project name; the repository and demo are Checkout Autopsy.
+
+**Organizer judging form:** pending the on-camera YouTube video, public post link, and a working form URL.
+
 ## Project
 
 **Tagline:** A successful response. A broken checkout.
@@ -14,7 +18,7 @@ The hosted application is an interactive explorer of completed real runs. New AI
 
 **Stack share link:** https://projects.dev/s#v1:createos~project,OpenRouter~api,Netlify~project
 
-**Event code:** `CreateOS-2026` (organizer email).
+**Event code:** `createos-2026` (accepted by the leaderboard; case-sensitive).
 
 **Evidence:** Real Node/Express + official Stripe SDK + native PostgreSQL; three authored fault mutations repaired by a real model. Repair checks 66/66, fresh frozen audits 69/69, sandbox destruction confirmed. Separate imported Python handler: 12/12 repair + 12/12 fresh audit. This is a supported integration profile and synthetic corpus, not independent customer repositories or live Stripe-delivered traffic.
 
@@ -22,11 +26,11 @@ The hosted application is an interactive explorer of completed real runs. New AI
 
 Organizer instructions sent October 17 say submissions lock at **5:30 PM Pacific / October 18, 1:30 AM Lagos**. A later checklist says submit by 6 PM Pacific; use the earlier cutoff.
 
-- Public GitHub repository with README.
-- YouTube demo, 2–3 minutes, with at least one team member on camera.
-- Public X/LinkedIn post tagging @createosai / CreateOS.
-- Team and project details in the organizer form.
-- Stripe Projects leaderboard entry using event code `CreateOS-2026`.
+- [x] Public GitHub repository with README.
+- [ ] YouTube demo, 2–3 minutes, with at least one team member on camera.
+- [ ] Public X/LinkedIn post tagging @createosai / CreateOS.
+- [ ] Team and project details in the organizer form.
+- [x] Stripe Projects leaderboard entry using event code `createos-2026`.
 
 The form link in the organizer's 12-hour email currently resolves to the Google Forms root and displays “Invalid Dynamic Link.” Obtain a working organizer form URL. Do not claim submission until the form and leaderboard show confirmation.
 

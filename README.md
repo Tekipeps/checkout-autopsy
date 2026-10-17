@@ -6,7 +6,7 @@ Reproduce duplicate or premature checkout fulfillment, run a repair inside Creat
 
 ## Public demo and evidence
 
-[Explore the recorded runs](https://gleeful-baklava-f89941.netlify.app). Inspect exact AI edits, before/after checks, frozen hashes, and downloadable raw reports. This public site displays completed real executions; run the local app or CLI for new agent executions. [Submission packet and video script](docs/submission.md).
+[Explore the recorded runs](https://gleeful-baklava-f89941.netlify.app) · [CreateOS 2026 leaderboard entry](https://projects.dev/vote/createos-hackathon). Inspect exact AI edits, before/after checks, frozen hashes, and downloadable raw reports. This public site displays completed real executions; run the local app or CLI for new agent executions. [Submission packet and video script](docs/submission.md).
 
 ## Run locally
 
